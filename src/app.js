@@ -5,6 +5,7 @@ import onChange from './view';
 import createState from './state';
 import parse from './parser';
 import ru from './locales/ru';
+import updateFeeds from './updater';
 
 yup.setLocale({
   string: {
@@ -70,7 +71,6 @@ export default () => {
           watchedState.form.valid = true;
           watchedState.form.error = null;
 
-          // Добавление фида
           watchedState.feeds.push({
             url,
             title: feed.title,
@@ -100,5 +100,6 @@ export default () => {
           }
         });
     });
+     updateFeeds(state);
   });
 };
