@@ -89,17 +89,17 @@ export default () => {
             watchedState.form.valid = false
             if (err.message === 'invalidRss') {
               watchedState.form.error = i18next.t('form.errors.invalidRss')
-            } 
+            }
             else if (err.isAxiosError) {
               watchedState.form.error = i18next.t('form.errors.network')
-            } 
+            }
             else if (i18next.exists(err.message)) {
               watchedState.form.error = i18next.t(err.message)
-            } 
-            else {
-              watchedState.form.error = i18next.t('form.errors.unknown')}
             }
-        )
+            else {
+              watchedState.form.error = i18next.t('form.errors.unknown') 
+            }
+        })
       })
       elements.postsContainer.addEventListener('click', (e) => {
         const { target } = e
