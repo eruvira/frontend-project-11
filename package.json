@@ -17,7 +17,9 @@
     "vite": "^7.0.0"
   },
   "dependencies": {
-    "bootstrap": "^5.3.7"
+    "bootstrap": "^5.3.7",
+    "on-change": "^5.0.1",
+    "yup": "^1.6.1"
   },
   "description": "[![Actions Status](https://github.com/eruvira/frontend-project-11/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/eruvira/frontend-project-11/actions)",
   "main": "src/main.js",

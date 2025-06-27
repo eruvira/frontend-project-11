@@ -1,26 +1,51 @@
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import * as yup from 'yup';
+import initView from './view';
+import createState from './state';
 
+const makeSchema = (existingUrls) =>
+  yup
+    .string()
+    .trim()
+    .required('URL обязателен')
+    .url('Неверный URL')
+    .notOneOf(existingUrls, 'RSS уже добавлен');
 
-const form = document.getElementById('rss-form');
-const input = document.getElementById('url-input');
+document.addEventListener('DOMContentLoaded', () => {
+  const elements = {
+    form: document.getElementById('rss-form'),
+    input: document.getElementById('url-input'),
+    feedback: document.getElementById('feedback'),
+  };
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const url = input.value.trim();
+  const state = createState();
+  const watchedState = initView(state, elements);
 
-  fetch(url) 
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(new Error('Network error'));
-      }
-      return res.text();
-    })
-    .then((data) => {
-      console.log('Загружено:', data);
-    })
-    .catch((err) => {
-      console.error('Ошибка:', err);
-    });
+  elements.form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const url = formData.get('url-input').trim();
+    watchedState.form.url = url;
+
+    const schema = makeSchema(watchedState.feeds.map((f) => f.url));
+
+    schema
+      .validate(url)
+      .then(() => {
+        watchedState.form.valid = true;
+        watchedState.form.error = null;
+
+        watchedState.feeds.push({ url });
+
+        elements.input.value = '';
+        elements.input.focus();
+      })
+      .catch((err) => {
+        watchedState.form.valid = false;
+        watchedState.form.error = err.message;
+      });
+  });
 });
 
