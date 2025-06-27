@@ -7,7 +7,7 @@
   </head>
   <body class="py-5 align-items-start">
     <div class="container">
-      <h1 class="mb-4">RSS Reader</h1>
+      <h1 class="mb-4" data-i18n="appName"></h1>
       <form id="rss-form" class="row g-3">
         <div class="col-auto">
           <input
@@ -15,12 +15,12 @@
             class="form-control"
             id="url-input"
             name="url-input"
-            placeholder="Введите RSS ссылку"
+            data-i18n-placeholder="form.inputPlaceholder"
           />
           <div id="feedback" class="invalid-feedback"></div>
         </div>
         <div class="col-auto">
-          <button type="submit" class="btn btn-primary">Добавить</button>
+          <button type="submit" class="btn btn-primary" data-i18n="form.submit"></button>
         </div>
       </form>
     </div>
