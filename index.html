@@ -5,25 +5,61 @@
     <title>RSS Reader</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body class="py-5 align-items-start">
-    <div class="container">
-      <h1 class="mb-4" data-i18n="appName"></h1>
-      <form id="rss-form" class="row g-3">
-        <div class="col-auto">
-          <input
-            type="text"
-            class="form-control"
-            id="url-input"
-            name="url-input"
-            data-i18n-placeholder="form.inputPlaceholder"
-          />
-          <div id="feedback" class="invalid-feedback"></div>
+  <body class="d-flex flex-column min-vh-100">
+    <main class="flex-grow-1 w-100">
+      <section class="container-fluid bg-dark p-5">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto text-white">
+            <h1 class="display-3 mb-0" data-i18n="appName"></h1>
+            <p class="lead mb-4" data-i18n="description"></p>
+            <form id="rss-form" class="row g-3">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="url-input"
+                      name="url-input"
+                      data-i18n-placeholder="form.inputPlaceholder"
+                    />
+                    <label for="url-input">Ссылка RSS</label>
+                    <div id="feedback" class="invalid-feedback"></div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-lg px-sm-5 h-100"
+                    data-i18n="form.submit"
+                  ></button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary" data-i18n="form.submit"></button>
+      </section>
+      <section class="container-fluid container-xxl p-5">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 order-1 mx-auto posts">
+            <div class="card border-0">
+              <div class="card-body">
+                <h2 data-i18n="posts" class="card-title h4"></h2>
+              </div>
+              <div id="posts"></div>
+            </div>
+          </div>
+          <div class="col-md-10 col-lg-4 mx-auto order-0 order-lg-1 feeds">
+            <div class="card border-0">
+              <div class="card-body">
+                <h2 data-i18n="feeds" class="card-title h4"></h2>
+              </div>
+              <div id="feeds"></div>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
-    <script type="module" src="/src/main.js"></script>
+      </section>
+      <script type="module" src="/src/main.js"></script>
+    </main>
   </body>
 </html>

@@ -1,6 +1,7 @@
 export default {
   translation: {
     appName: 'RSS агрегатор',
+    description: 'Начните читать RSS сегодня! Это легко, это красиво.',
     form: {
       inputPlaceholder: 'Ссылка на RSS',
       submit: 'Добавить',
@@ -10,7 +11,11 @@ export default {
         url: 'Ссылка должна быть валидным URL',
         duplicate: 'RSS уже существует',
         network: 'Ошибка сети',
+        invalidRss: 'Ресурс не содержит валидный RSS',
+        unknown: 'Неизвестная ошибка',
       },
     },
+    feeds: 'Фиды',
+    posts: 'Посты',
   },
 };

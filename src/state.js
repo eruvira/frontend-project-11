@@ -5,4 +5,5 @@ export default () => ({
     error: null,
   },
   feeds: [],
+  posts: [],
 });
