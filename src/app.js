@@ -49,7 +49,8 @@ export default () => {
       el.textContent = i18next.t(key);
     });
 
-    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((elOriginal) => {
+      const el = elOriginal;
       const key = el.getAttribute('data-i18n-placeholder');
       el.setAttribute('placeholder', i18next.t(key));
     });
@@ -59,7 +60,6 @@ export default () => {
 
       const formData = new FormData(e.target);
       const url = formData.get('url-input').trim();
-
       const existingUrls = watchedState.feeds.map((f) => f.url);
       const schema = makeSchema(existingUrls);
 
@@ -100,6 +100,26 @@ export default () => {
           }
         });
     });
-     updateFeeds(state);
+
+    elements.postsContainer.addEventListener('click', (e) => {
+      const { target } = e;
+      if (target.tagName !== 'BUTTON') return;
+
+      const postLink = target.getAttribute('data-id');
+      const post = state.posts.find((p) => p.link === postLink);
+      if (!post) return;
+
+      state.readPosts.add(post.link);
+
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      const modalFullArticle = document.getElementById('modalFullArticle');
+
+      modalTitle.textContent = post.title;
+      modalBody.textContent = post.description;
+      modalFullArticle.setAttribute('href', post.link);
+    });
+
+    updateFeeds(state);
   });
 };

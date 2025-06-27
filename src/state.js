@@ -6,4 +6,5 @@ export default () => ({
   },
   feeds: [],
   posts: [],
+  readPosts: new Set()
 });

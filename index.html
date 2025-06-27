@@ -44,7 +44,7 @@
           <div class="col-md-10 col-lg-8 order-1 mx-auto posts">
             <div class="card border-0">
               <div class="card-body">
-                <h2 data-i18n="posts" class="card-title h4"></h2>
+                <h2 data-i18n="posts.title" class="card-title h4"></h2>
               </div>
               <div id="posts"></div>
             </div>
@@ -61,5 +61,38 @@
       </section>
       <script type="module" src="/src/main.js"></script>
     </main>
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Закрыть"
+            ></button>
+          </div>
+          <div class="modal-body" id="modalBody"></div>
+          <div class="modal-footer">
+            <a
+              href="#"
+              target="_blank"
+              class="btn btn-primary"
+              id="modalFullArticle"
+            >
+              Читать полностью
+            </a>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Закрыть
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
