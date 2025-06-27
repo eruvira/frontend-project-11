@@ -62,7 +62,7 @@ export default () => {
         const url = formData.get('url-input').trim()
         watchedState.form.valid = false
         watchedState.form.error = null
-        const existingUrls = watchedState.feeds.map((f) => f.url)
+        const existingUrls = watchedState.feeds.map(f => f.url)
         const schema = makeSchema(existingUrls)
 
         schema
@@ -80,7 +80,7 @@ export default () => {
               description: feed.description,
             })
 
-            const enrichedPosts = posts.map(post => ({...post, feedUrl: url,}))
+            const enrichedPosts = posts.map(post => ( {...post, feedUrl: url} ))
             watchedState.posts.push(...enrichedPosts)
 
             elements.input.value = ''
@@ -89,21 +89,21 @@ export default () => {
           .catch((err) => {
             watchedState.form.valid = false
             if (err.message === 'invalidRss') {
-              watchedState.form.error = i18next.t('form.errors.invalidRss')
-            } else if (err.isAxiosError) {
-              watchedState.form.error = i18next.t('form.errors.network')
-            } else if (i18next.exists(err.message)) {
-              watchedState.form.error = i18next.t(err.message)
-            } else {
-              watchedState.form.error = i18next.t('form.errors.unknown')}
-          })
+              watchedState.form.error = i18next.t('form.errors.invalidRss')} 
+            else if (err.isAxiosError) {
+              watchedState.form.error = i18next.t('form.errors.network')} 
+            else if (i18next.exists(err.message)) {
+              watchedState.form.error = i18next.t(err.message)} 
+            else {
+              watchedState.form.error = i18next.t('form.errors.unknown')}} 
+          )
       })
       elements.postsContainer.addEventListener('click', (e) => {
         const { target } = e
         if (target.tagName !== 'BUTTON') return
 
         const postLink = target.getAttribute('data-id')
-        const post = state.posts.find((p) => p.link === postLink)
+        const post = state.posts.find(p => p.link === postLink)
         if (!post) return
 
         state.readPosts.add(post.link)
