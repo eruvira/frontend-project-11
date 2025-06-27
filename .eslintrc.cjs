@@ -12,4 +12,4 @@ module.exports = {
     'no-console': 'off',
     'prefer-promise-reject-errors': 'off',
   },
-};
+}

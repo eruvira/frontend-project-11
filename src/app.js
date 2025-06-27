@@ -17,11 +17,9 @@ yup.setLocale({
   },
 })
 
-const makeSchema = (existingUrls) =>
-  yup.string().required().url().notOneOf(existingUrls)
+const makeSchema = existingUrls => yup.string().required().url().notOneOf(existingUrls)
 
-const getProxyUrl = (url) =>
-  `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(url)}`
+const getProxyUrl = url => `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(url)}`
 
 export default () => {
   i18next
@@ -82,10 +80,7 @@ export default () => {
               description: feed.description,
             })
 
-            const enrichedPosts = posts.map((post) => ({
-              ...post,
-              feedUrl: url,
-            }))
+            const enrichedPosts = posts.map(post => ({...post, feedUrl: url,}))
             watchedState.posts.push(...enrichedPosts)
 
             elements.input.value = ''
@@ -93,7 +88,6 @@ export default () => {
           })
           .catch((err) => {
             watchedState.form.valid = false
-
             if (err.message === 'invalidRss') {
               watchedState.form.error = i18next.t('form.errors.invalidRss')
             } else if (err.isAxiosError) {
@@ -101,11 +95,9 @@ export default () => {
             } else if (i18next.exists(err.message)) {
               watchedState.form.error = i18next.t(err.message)
             } else {
-              watchedState.form.error = i18next.t('form.errors.unknown')
-            }
+              watchedState.form.error = i18next.t('form.errors.unknown')}
           })
       })
-
       elements.postsContainer.addEventListener('click', (e) => {
         const { target } = e
         if (target.tagName !== 'BUTTON') return
@@ -119,7 +111,6 @@ export default () => {
         const modalTitle = document.getElementById('modalTitle')
         const modalBody = document.getElementById('modalBody')
         const modalFullArticle = document.getElementById('modalFullArticle')
-
         modalTitle.textContent = post.title
         modalBody.textContent = post.description
         modalFullArticle.setAttribute('href', post.link)
