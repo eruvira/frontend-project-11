@@ -79,8 +79,7 @@ export default () => {
               title: feed.title,
               description: feed.description,
             })
-
-            const enrichedPosts = posts.map(post => ( {...post, feedUrl: url} ))
+            const enrichedPosts = posts.map(post => ( { ...post, feedUrl: url } ))
             watchedState.posts.push(...enrichedPosts)
 
             elements.input.value = ''
@@ -89,14 +88,14 @@ export default () => {
           .catch((err) => {
             watchedState.form.valid = false
             if (err.message === 'invalidRss') {
-              watchedState.form.error = i18next.t('form.errors.invalidRss')} 
+              watchedState.form.error = i18next.t('form.errors.invalidRss') } 
             else if (err.isAxiosError) {
-              watchedState.form.error = i18next.t('form.errors.network')} 
+              watchedState.form.error = i18next.t('form.errors.network') } 
             else if (i18next.exists(err.message)) {
               watchedState.form.error = i18next.t(err.message)} 
             else {
-              watchedState.form.error = i18next.t('form.errors.unknown')}} 
-          )
+              watchedState.form.error = i18next.t('form.errors.unknown')} } 
+            )
       })
       elements.postsContainer.addEventListener('click', (e) => {
         const { target } = e
