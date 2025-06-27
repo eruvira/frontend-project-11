@@ -20,5 +20,9 @@ export default {
       title: 'Посты',
       preview: 'Просмотр',
     },
+    modal: {
+      read: "Читать полностью",
+      close: "Закрыть"
+    }
   },
 };

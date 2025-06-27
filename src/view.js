@@ -17,7 +17,8 @@ const renderFormState = (elements, form) => {
   }
 };
 
-const renderFeeds = (feeds, container) => {
+const renderFeeds = (feeds, containerVal) => {
+  const container = containerVal
   container.innerHTML = '';
 
   const card = document.createElement('div');
@@ -46,7 +47,8 @@ const renderFeeds = (feeds, container) => {
   container.appendChild(card);
 };
 
-const renderPosts = (posts, readPosts, container) => {
+const renderPosts = (posts, readPosts, containerVal) => {
+  const container = containerVal
   container.innerHTML = '';
 
   const card = document.createElement('div');
