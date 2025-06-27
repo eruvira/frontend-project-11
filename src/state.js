@@ -1,7 +1,7 @@
 export default () => ({
   form: {
     url: '',
-    valid: true,
+    valid: null,
     error: null,
   },
   feeds: [],

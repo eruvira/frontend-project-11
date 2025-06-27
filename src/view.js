@@ -3,7 +3,6 @@ import i18next from 'i18next';
 
 const renderFormState = (elements, form) => {
   const { input, feedback } = elements;
-
   if (form.valid) {
     input.classList.remove('is-invalid');
     feedback.classList.remove('text-danger');
@@ -13,12 +12,12 @@ const renderFormState = (elements, form) => {
     input.classList.add('is-invalid');
     feedback.classList.remove('text-success');
     feedback.classList.add('text-danger');
-    feedback.textContent = form.error;
+    feedback.textContent = i18next.t(`form.errors.${form.error}`);
   }
 };
 
 const renderFeeds = (feeds, containerVal) => {
-  const container = containerVal
+  const container = containerVal;
   container.innerHTML = '';
 
   const card = document.createElement('div');
@@ -48,7 +47,7 @@ const renderFeeds = (feeds, containerVal) => {
 };
 
 const renderPosts = (posts, readPosts, containerVal) => {
-  const container = containerVal
+  const container = containerVal;
   container.innerHTML = '';
 
   const card = document.createElement('div');
@@ -59,7 +58,14 @@ const renderPosts = (posts, readPosts, containerVal) => {
 
   posts.forEach((post) => {
     const li = document.createElement('li');
-    li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
+    li.classList.add(
+      'list-group-item',
+      'd-flex',
+      'justify-content-between',
+      'align-items-start',
+      'border-0',
+      'border-end-0',
+    );
 
     const link = document.createElement('a');
     link.setAttribute('href', post.link);
@@ -84,23 +90,24 @@ const renderPosts = (posts, readPosts, containerVal) => {
   container.appendChild(card);
 };
 
-export default (state, elements) => onChange(state, (path) => {
-  switch (path) {
-    case 'form.valid':
-    case 'form.error':
-      renderFormState(elements, state.form);
-      break;
+export default (state, elements) =>
+  onChange(state, (path) => {
+    switch (path) {
+      case 'form.valid':
+      case 'form.error':
+        renderFormState(elements, state.form);
+        break;
 
-    case 'feeds':
-      renderFeeds(state.feeds, elements.feedsContainer);
-      break;
+      case 'feeds':
+        renderFeeds(state.feeds, elements.feedsContainer);
+        break;
 
-    case 'posts':
-    case 'readPosts':
-      renderPosts(state.posts, state.readPosts, elements.postsContainer);
-      break;
+      case 'posts':
+      case 'readPosts':
+        renderPosts(state.posts, state.readPosts, elements.postsContainer);
+        break;
 
-    default:
-      break;
-  }
-});
+      default:
+        break;
+    }
+  });
