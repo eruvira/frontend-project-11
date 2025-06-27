@@ -97,9 +97,9 @@ export default () => {
               watchedState.form.error = i18next.t(err.message)
             }
             else {
-              watchedState.form.error = i18next.t('form.errors.unknown') 
+              watchedState.form.error = i18next.t('form.errors.unknown')
             }
-        })
+          })
       })
       elements.postsContainer.addEventListener('click', (e) => {
         const { target } = e
