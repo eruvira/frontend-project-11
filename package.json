@@ -1,0 +1,26 @@
+{
+  "name": "@hexlet/code",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.32.0",
+    "prettier": "^3.6.2",
+    "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  },
+  "description": "[![Actions Status](https://github.com/eruvira/frontend-project-11/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/eruvira/frontend-project-11/actions)",
+  "main": "src/main.js",
+  "author": "",
+  "license": "ISC"
+}
