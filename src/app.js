@@ -125,6 +125,23 @@ export default () => {
         modalFullArticle.setAttribute('href', post.link);
       });
 
+      elements.postsContainer.addEventListener('click', (e) => {
+        const { target } = e;
+
+        if (target.tagName === 'A') {
+          const postId = target.getAttribute('href');
+          watchedState.readPosts.add(postId);
+        }
+      });
+
+      const modal = document.getElementById('previewModal');
+      modal.addEventListener('show.bs.modal', (e) => {
+        const { relatedTarget } = e;
+        const postId = relatedTarget.dataset.id;
+
+        watchedState.readPosts.add(postId);
+      });
+
       updateFeeds(state);
     });
 };

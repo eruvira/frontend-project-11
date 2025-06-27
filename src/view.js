@@ -12,7 +12,7 @@ const renderFormState = (elements, form) => {
     input.classList.add('is-invalid');
     feedback.classList.remove('text-success');
     feedback.classList.add('text-danger');
-    feedback.textContent = i18next.t(`form.errors.${form.error}`);
+    feedback.textContent = i18next.t(`${form.error}`);
   }
 };
 
@@ -71,7 +71,11 @@ const renderPosts = (posts, readPosts, containerVal) => {
     link.setAttribute('href', post.link);
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
-    link.classList.add(readPosts.has(post.link) ? 'fw-normal' : 'fw-bold');
+    if (readPosts.has(post.link)) {
+      link.classList.add('fw-normal', 'text-secondary'); 
+    } else {
+      link.classList.add('fw-bold'); 
+    }
     link.textContent = post.title;
 
     const button = document.createElement('button');
