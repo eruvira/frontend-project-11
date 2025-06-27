@@ -8,7 +8,7 @@ const renderFormState = (elements, form) => {
     feedback.classList.remove('text-danger')
     feedback.classList.add('text-success')
     feedback.textContent = i18next.t('form.success')
-  } 
+  }
   else {
     input.classList.add('is-invalid')
     feedback.classList.remove('text-success')
@@ -74,7 +74,7 @@ const renderPosts = (posts, readPosts, containerVal) => {
     link.setAttribute('rel', 'noopener noreferrer')
     if (readPosts.has(post.link)) {
       link.classList.add('fw-normal', 'text-secondary')
-    } 
+    }
     else {
       link.classList.add('fw-bold')
     }
