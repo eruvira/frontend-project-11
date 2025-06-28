@@ -2,8 +2,7 @@ import axios from 'axios'
 import i18next from 'i18next'
 import parse from './parser'
 
-const getProxyUrl = (url) =>
-  `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(url)}`
+const getProxyUrl = url => `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(url)}`
 
 const updateFeeds = (state) => {
   const requests = state.feeds.map((feed) => {
@@ -11,18 +10,17 @@ const updateFeeds = (state) => {
     return axios
       .get(proxyUrl)
       .then((res) => {
-        // eslint-disable-next-line no-param-reassign
         state.feedUpdateError = null
 
         const { posts } = parse(res.data.contents)
 
         const existingLinks = state.posts
-          .filter((post) => post.feedUrl === feed.url)
-          .map((post) => post.link)
+          .filter(post => post.feedUrl === feed.url)
+          .map(post => post.link)
 
         const newPosts = posts
-          .filter((post) => !existingLinks.includes(post.link))
-          .map((post) => ({
+          .filter(post => !existingLinks.includes(post.link))
+          .map(post => ({
             ...post,
             feedUrl: feed.url,
           }))
@@ -32,7 +30,6 @@ const updateFeeds = (state) => {
         }
       })
       .catch((error) => {
-        // eslint-disable-next-line no-param-reassign
         state.feedUpdateError = i18next.t('form.errors.network')
         console.error(`Ошибка при обновлении ленты ${feed.url}:`, error)
       })
