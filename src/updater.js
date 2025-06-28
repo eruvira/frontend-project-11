@@ -10,6 +10,7 @@ const updateFeeds = (state) => {
     return axios
       .get(proxyUrl)
       .then((res) => {
+        // eslint-disable-next-line no-param-reassign
         state.feedUpdateError = null
 
         const { posts } = parse(res.data.contents)
@@ -30,6 +31,7 @@ const updateFeeds = (state) => {
         }
       })
       .catch((error) => {
+        // eslint-disable-next-line no-param-reassign
         state.feedUpdateError = i18next.t('form.errors.network')
         console.error(`Ошибка при обновлении ленты ${feed.url}:`, error)
       })
