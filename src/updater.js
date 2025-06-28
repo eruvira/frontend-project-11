@@ -5,7 +5,7 @@ import parse from './parser'
 const getProxyUrl = url => `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(url)}`
 
 const updateFeeds = (state) => {
-  const feedUpdateState = state; 
+  const feedUpdateState = state
 
   const requests = feedUpdateState.feeds.map((feed) => {
     const proxyUrl = getProxyUrl(feed.url)
@@ -13,7 +13,7 @@ const updateFeeds = (state) => {
     return axios
       .get(proxyUrl)
       .then((res) => {
-        feedUpdateState.feedUpdateError = null;
+        feedUpdateState.feedUpdateError = null
 
         const { posts } = parse(res.data.contents)
 
@@ -42,6 +42,5 @@ const updateFeeds = (state) => {
     setTimeout(() => updateFeeds(feedUpdateState), 5000)
   })
 }
-
 
 export default updateFeeds
