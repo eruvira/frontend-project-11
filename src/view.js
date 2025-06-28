@@ -8,8 +8,7 @@ const renderFormState = (elements, form) => {
     feedback.classList.remove('text-danger')
     feedback.classList.add('text-success')
     feedback.textContent = i18next.t('form.success')
-  }
-  else {
+  } else {
     input.classList.add('is-invalid')
     feedback.classList.remove('text-success')
     feedback.classList.add('text-danger')
@@ -74,8 +73,7 @@ const renderPosts = (posts, readPosts, containerVal) => {
     link.setAttribute('rel', 'noopener noreferrer')
     if (readPosts.has(post.link)) {
       link.classList.add('fw-normal', 'text-secondary')
-    }
-    else {
+    } else {
       link.classList.add('fw-bold')
     }
     link.textContent = post.title
@@ -112,6 +110,13 @@ export default (state, elements) =>
       case 'readPosts':
         renderPosts(state.posts, state.readPosts, elements.postsContainer)
         break
+      case 'feedUpdateError': {
+        const { feedback } = elements;
+        feedback.classList.remove('text-success');
+        feedback.classList.add('text-danger');
+        feedback.textContent = state.feedUpdateError;
+        break;
+      }
 
       default:
         break

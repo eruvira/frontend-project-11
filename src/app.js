@@ -136,6 +136,6 @@ export default () => {
         watchedState.readPosts.add(postId)
       })
 
-      updateFeeds(state)
+      updateFeeds(watchedState)
     })
 }
